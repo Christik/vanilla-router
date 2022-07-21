@@ -25,6 +25,14 @@ const getPageContent = async (route) => {
 
 const updatePageContent = (content) => (routerConfig.contentContainer.innerHTML = content);
 
+const setRoute = async (path) => {
+    const route = routerConfig.routes[path];
+    const pageContent = await getPageContent(route);
+
+    updatePageContent(pageContent);
+    history.pushState({}, '', path);
+};
+
 const onLinkClick = async (evt) => {
     const linkElement = evt.target.closest('[href]');
     const isNotLink = !linkElement;
@@ -41,13 +49,13 @@ const onLinkClick = async (evt) => {
     }
 
     evt.preventDefault();
-
-    const route = routerConfig.routes[linkHref];
-    const pageContent = await getPageContent(route);
-    updatePageContent(pageContent);
+    await setRoute(linkHref);
 };
 
 const init = async () => {
+    const currentPath = window.location.pathname;
+    await setRoute(currentPath);
+
     document.addEventListener('click', onLinkClick);
 };
 
