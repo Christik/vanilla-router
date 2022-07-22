@@ -1,15 +1,23 @@
+import { getDynamicRoutes, getDynamicRoutByHref } from './dynamic-routes.js';
+
 const state = {
-  config: {
+    config: {
       routes: {
           '/': {
               template: '',
               script: '',
               title: '',
               description: '',
-          }
+          },
       },
       contentContainer: null,
-  },
+    },
+    dynamicRoutes: [
+        {
+            value: '',
+            prefix: '',
+        },
+    ],
 };
 
 const getPageContent = async (route) => {
@@ -35,18 +43,38 @@ const updateMetaTags = (route) => {
 
 const updatePageContent = (content) => (state.config.contentContainer.innerHTML = content);
 
-const setRoute = async (path) => {
-    const route = state.config.routes[path];
+const goToPage = async (path, routeValue, data = null) => {
+    routeValue = (routeValue || path);
+    const route = state.config.routes[routeValue];
     const pageContent = await getPageContent(route);
-    const pageScript = (route.script) ? (await import(route.script)) : null;
 
     updatePageContent(pageContent);
     updateMetaTags(route);
     history.pushState({}, '', path);
 
-    if (pageScript) {
-        pageScript.default();
+    if (route.script) {
+        const pageScript = await import(route.script);
+        pageScript.default(data);
     }
+};
+
+const setRoute = async (path) => {
+    const isPageStatic = state.config.routes.hasOwnProperty(path);
+    if (isPageStatic) {
+        await goToPage(path);
+        return;
+    }
+
+    const hasDynamicRoutes = (state.dynamicRoutes.length > 0);
+    if (hasDynamicRoutes) {
+        const route = getDynamicRoutByHref(path, state.dynamicRoutes);
+        if (route) {
+            await goToPage(path, route.value, route.variable);
+            return;
+        }
+    }
+
+    await goToPage('/404');
 };
 
 const onLinkClick = async (evt) => {
@@ -56,21 +84,14 @@ const onLinkClick = async (evt) => {
         return;
     }
 
-    const linkHref = linkElement.getAttribute('href');
-    const isLinkExternal = !linkHref.startsWith('/');
+    const hrefValue = linkElement.getAttribute('href');
+    const isLinkExternal = !hrefValue.startsWith('/');
     if (isLinkExternal) {
         return;
     }
 
     evt.preventDefault();
-
-    const isPageExist = state.config.routes.hasOwnProperty(linkHref);
-    if (isPageExist) {
-        await setRoute(linkHref);
-        return;
-    }
-
-    await setRoute(404);
+    await setRoute(hrefValue);
 };
 
 const onWindowPopstate = async () => {
@@ -79,6 +100,7 @@ const onWindowPopstate = async () => {
 
 const initRouter = async (config) => {
     state.config = config;
+    state.dynamicRoutes = getDynamicRoutes(Object.keys(state.config.routes));
 
     await setRoute(window.location.pathname);
 

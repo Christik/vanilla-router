@@ -1,4 +1,4 @@
-import { initRouter } from './router.js';
+import { initRouter } from './router/router.js';
 
 const contentElement = document.querySelector('.page-content');
 const routerConfig = {
@@ -15,13 +15,19 @@ const routerConfig = {
             title: 'Catalog page',
             description: 'This is catalog',
         },
+        '/catalog/{id}': {
+            template: '/templates/pages/catalog-item.html',
+            script: '/js/pages/catalog-item.js',
+            title: 'Catalog Item page',
+            description: 'This is item of catalog',
+        },
         '/about': {
             template: '/templates/pages/about.html',
             script: '/js/pages/about.js',
             title: 'About page',
             description: 'This is about page',
         },
-        404: {
+        '/404': {
             template: '/templates/pages/404.html',
             title: '404 error',
             description: 'Page not found',
