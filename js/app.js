@@ -21,6 +21,11 @@ const routerConfig = {
             title: 'About page',
             description: 'This is about page',
         },
+        404: {
+            template: '/templates/pages/404.html',
+            title: '404 error',
+            description: 'Page not found',
+        },
     },
     contentContainer: contentElement,
 };

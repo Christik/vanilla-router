@@ -3,6 +3,7 @@ const state = {
       routes: {
           '/': {
               template: '',
+              script: '',
               title: '',
               description: '',
           }
@@ -37,31 +38,39 @@ const updatePageContent = (content) => (state.config.contentContainer.innerHTML 
 const setRoute = async (path) => {
     const route = state.config.routes[path];
     const pageContent = await getPageContent(route);
-    const pageScript = await import(route.script);
+    const pageScript = (route.script) ? (await import(route.script)) : null;
 
     updatePageContent(pageContent);
     updateMetaTags(route);
     history.pushState({}, '', path);
-    pageScript.default();
+
+    if (pageScript) {
+        pageScript.default();
+    }
 };
 
 const onLinkClick = async (evt) => {
     const linkElement = evt.target.closest('[href]');
     const isNotLink = !linkElement;
-
     if (isNotLink) {
         return;
     }
 
     const linkHref = linkElement.getAttribute('href');
-    const isLinkExternal = !state.config.routes.hasOwnProperty(linkHref);
-
+    const isLinkExternal = !linkHref.startsWith('/');
     if (isLinkExternal) {
         return;
     }
 
     evt.preventDefault();
-    await setRoute(linkHref);
+
+    const isPageExist = state.config.routes.hasOwnProperty(linkHref);
+    if (isPageExist) {
+        await setRoute(linkHref);
+        return;
+    }
+
+    await setRoute(404);
 };
 
 const onWindowPopstate = async () => {
