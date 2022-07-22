@@ -37,10 +37,12 @@ const updatePageContent = (content) => (state.config.contentContainer.innerHTML 
 const setRoute = async (path) => {
     const route = state.config.routes[path];
     const pageContent = await getPageContent(route);
+    const pageScript = await import(route.script);
 
     updatePageContent(pageContent);
     updateMetaTags(route);
     history.pushState({}, '', path);
+    pageScript.default();
 };
 
 const onLinkClick = async (evt) => {
