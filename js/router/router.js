@@ -20,9 +20,9 @@ const state = {
     ],
 };
 
-const getPageContent = async (route) => {
+const getPageContent = async (templateUrl) => {
     try {
-        const response = await fetch(route.template);
+        const response = await fetch(templateUrl);
 
         if (response.ok) {
             return await response.text();
@@ -46,7 +46,7 @@ const updatePageContent = (content) => (state.config.contentContainer.innerHTML 
 const goToPage = async (path, routeValue, data = null) => {
     routeValue = (routeValue || path);
     const route = state.config.routes[routeValue];
-    const pageContent = await getPageContent(route);
+    const pageContent = await getPageContent(route.template);
 
     updatePageContent(pageContent);
     updateMetaTags(route);
@@ -65,13 +65,10 @@ const setRoute = async (path) => {
         return;
     }
 
-    const hasDynamicRoutes = (state.dynamicRoutes.length > 0);
-    if (hasDynamicRoutes) {
-        const route = getDynamicRoutByHref(path, state.dynamicRoutes);
-        if (route) {
-            await goToPage(path, route.value, route.variable);
-            return;
-        }
+    const dynamicRoute = getDynamicRoutByHref(path, state.dynamicRoutes);
+    if (dynamicRoute) {
+        await goToPage(path, dynamicRoute.value, dynamicRoute.variable);
+        return;
     }
 
     await goToPage('/404');
