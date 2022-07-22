@@ -1,4 +1,4 @@
-import { router } from './router.js';
+import { initRouter } from './router.js';
 
 const contentElement = document.querySelector('.page-content');
 const routerConfig = {
@@ -22,5 +22,4 @@ const routerConfig = {
     contentContainer: contentElement,
 };
 
-await router(routerConfig);
-
+initRouter(routerConfig);

@@ -66,7 +66,7 @@ const onWindowPopstate = async () => {
     await setRoute(window.location.pathname);
 };
 
-const router = async (config) => {
+const initRouter = async (config) => {
     state.config = config;
 
     await setRoute(window.location.pathname);
@@ -75,4 +75,4 @@ const router = async (config) => {
     window.addEventListener('popstate', onWindowPopstate);
 };
 
-export { router };
+export { initRouter };
