@@ -1,13 +1,19 @@
 const state = {
   config: {
-      routes: {},
+      routes: {
+          '/': {
+              template: '',
+              title: '',
+              description: '',
+          }
+      },
       contentContainer: null,
   },
 };
 
 const getPageContent = async (route) => {
     try {
-        const response = await fetch(`/pages/${route}.html`);
+        const response = await fetch(route.template);
 
         if (response.ok) {
             return await response.text();
@@ -19,6 +25,13 @@ const getPageContent = async (route) => {
     }
 };
 
+const updateMetaTags = (route) => {
+    const metaDescriptionElement = document.head.querySelector('meta[name="description"]');
+
+    document.title = route.title;
+    metaDescriptionElement.content = route.description;
+};
+
 const updatePageContent = (content) => (state.config.contentContainer.innerHTML = content);
 
 const setRoute = async (path) => {
@@ -26,6 +39,7 @@ const setRoute = async (path) => {
     const pageContent = await getPageContent(route);
 
     updatePageContent(pageContent);
+    updateMetaTags(route);
     history.pushState({}, '', path);
 };
 
