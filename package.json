@@ -4,7 +4,7 @@
   "description": "SPA на Vanilla JS",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "browser-sync start --server --no-ui --files \"js/**/*.js, index.html, css/**/*.css\"",
+    "start": "browser-sync start --server --no-ui --files \"js/**/*.js, index.html, css/**/*.css, templates/**/*.html\"",
     "lint": "eslint js/"
   },
   "repository": {

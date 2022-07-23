@@ -1,3 +1,167 @@
 /*====================
-    Title
+    Variables
  ====================*/
+
+:root {
+    --color-bg-primary: #FCFCFC;
+    --color-bg-secondary: #F5F5F5;
+    --color-bg-accent: #EF6E4D;
+    --color-bg-accent-light: rgba(239, 110, 77, 0.1);
+
+    --color-text-primary: #363B64;
+    --color-text-secondary: #A098AE;
+    --color-text-accent: #EF6E4D;
+
+    --color-border-primary: rgba(160, 152, 174, 0.3);
+
+    --font-primary: 'Montserrat', sans-serif;
+}
+
+/*====================
+    Font
+ ====================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+/*====================
+    Common
+ ====================*/
+
+html, body, button, input, select, textarea {
+    color: var(--color-text-primary);
+    font-family: var(--font-primary);
+    font-weight: 400;
+    line-height: 1;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    -o-font-smoothing: antialiased;
+}
+html {
+    font-size: 20px;
+}
+body {
+    background: var(--color-bg-primary);
+}
+
+/*====================
+    Links
+ ====================*/
+
+.text-link {
+    color: var(--color-text-primary);
+    text-decoration: none;
+    border-bottom: solid 1px var(--color-text-primary);
+}
+
+@media (hover: hover) {
+    .text-link:hover {
+        border-bottom-color: transparent;
+        color: var(--color-text-accent);
+    }
+}
+
+/*====================
+    Layouts
+ ====================*/
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content 1fr min-content;
+}
+.page__content {
+    padding: 2rem 0 3rem;
+    background: var(--color-bg-secondary);
+}
+
+/*====================
+    Header
+ ====================*/
+
+.page-header {
+    background: var(--color-bg-primary);
+}
+.page-header__in {
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+
+/*====================
+    Logo
+ ====================*/
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+.logo__img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    border: solid .25rem var(--color-bg-accent);
+}
+.logo__text {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-left: .5rem;
+}
+.logo__text:after {
+    content: '.';
+    color: var(--color-text-accent);
+}
+
+/*====================
+    Menu
+ ====================*/
+
+.menu {
+    display: flex;
+}
+.menu__item:not(:first-child) {
+    margin-left: .5rem;
+}
+.menu__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.5rem;
+    padding: 0 1rem;
+    border: solid 1px transparent;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+}
+.menu__link--active {
+    pointer-events: none;
+    border-color: transparent;
+    color: var(--color-text-accent);
+    background-color: var(--color-bg-accent-light);
+}
+
+@media (hover: hover) {
+    .menu__link:hover {
+        border-color: var(--color-border-primary);
+    }
+}
+
+/*====================
+    Footer
+ ====================*/
+
+.page-footer {
+    padding: 1rem 0;
+    text-align: center;
+}

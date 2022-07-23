@@ -8,41 +8,54 @@
     <meta name="description" content="SPA routing on Vanilla JS">
 </head>
 <body>
-    <header class="page-header">
-        <ul class="menu">
-            <li>
-                <a href="/">Главная</a>
-            </li>
-            <li>
-                <a href="/catalog">Каталог</a>
-                <ul>
-                    <li>
-                        <a href="/catalog/boom">Карточка каталога</a>
-                    </li>
-                    <li>
-                        <a href="/catalog2/boom">Несуществующая карточка каталога</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="/about">О проекте</a>
-            </li>
-            <li>
-                <a href="/404nofound">404</a>
-            </li>
-            <li>
-                <a href="https://www.google.com/">Google</a>
-            </li>
-        </ul>
-    </header>
+<div class="page">
+    <header class="page-header page__header">
+        <div class="container page-header__in">
+            <div class="logo">
+                <img class="logo__img"
+                     src="./img/logo.svg"
+                     alt="Rick and Morty">
+                <div class="logo__text">Rick and Morty</div>
+            </div>
+            <ul class="menu">
+                <li class="menu__item">
+                    <a class="menu__link menu__link--active"
+                       href="/">Главная</a>
+                </li>
+                <li class="menu__item">
+                    <a class="menu__link"
+                       href="/catalog">Каталог</a>
+                </li>
+                <li class="menu__item">
+                    <a class="menu__link"
+                       href="/catalog/boom">Карточка каталога</a>
+                </li>
+                <li class="menu__item">
+                    <a class="menu__link"
+                       href="/about">О проекте</a>
+                </li>
+                <li class="menu__item">
+                    <a class="menu__link"
+                       href="https://rickandmortyapi.com"
+                       target="_blank">API</a>
+                </li>
+            </ul>
+        </div><!--.container-->
+    </header><!--.page-header-->
 
-    <main class="page-content">
+    <main class="page-content page__content">
 
-    </main>
+    </main><!--.page-content-->
 
-    <footer class="page-footer">
-        Written by Christik
-    </footer>
+    <footer class="page-footer page__footer">
+        <div class="container">
+            Written by
+            <a class="text-link"
+               href="https://github.com/Christik"
+               target="_blank">Christik</a>
+        </div><!--.container-->
+    </footer><!--.page-footer-->
+</div><!--.page-->
 
     <script src="./js/app.js" type="module"></script>
 </body>
