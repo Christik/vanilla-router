@@ -1,11 +1,9 @@
-console.log('home script');
+import { getAllCharacters } from '../api.js';
 
-const foo = () => {
-    console.log('foo');
-};
+const characters = await getAllCharacters();
 
 const init = () => {
-    console.log('init home');
-}
+    console.log(characters);
+};
 
-export { foo, init as default };
+export { init as default };
