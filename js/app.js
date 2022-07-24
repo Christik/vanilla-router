@@ -4,28 +4,28 @@ const contentElement = document.querySelector('.page-content');
 const routerConfig = {
     routes: {
         '/': {
-            template: '/templates/pages/home.html',
-            script: '/js/pages/home.js',
-            title: 'Home page',
-            description: 'This is home page',
+            template: '/templates/pages/characters.html',
+            script: '/js/pages/characters.js',
+            title: 'Characters page',
+            description: 'This is characters page',
         },
-        '/catalog': {
-            template: '/templates/pages/catalog.html',
-            script: '/js/pages/catalog.js',
-            title: 'Catalog page',
-            description: 'This is catalog',
+        '/character/{id}': {
+            template: '/templates/pages/character.html',
+            script: '/js/pages/character.js',
+            title: 'Character page',
+            description: 'This is Character page',
         },
-        '/catalog/{id}': {
-            template: '/templates/pages/catalog-item.html',
-            script: '/js/pages/catalog-item.js',
-            title: 'Catalog Item page',
-            description: 'This is item of catalog',
+        '/locations': {
+            template: '/templates/pages/locations.html',
+            script: '/js/pages/locations.js',
+            title: 'Locations page',
+            description: 'This is locations page',
         },
-        '/about': {
-            template: '/templates/pages/about.html',
-            script: '/js/pages/about.js',
-            title: 'About page',
-            description: 'This is about page',
+        '/episodes': {
+            template: '/templates/pages/episodes.html',
+            script: '/js/pages/episodes.js',
+            title: 'Episodes page',
+            description: 'This is episodes page',
         },
         '/404': {
             template: '/templates/pages/404.html',
