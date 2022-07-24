@@ -7,10 +7,12 @@
     --color-bg-secondary: #F5F5F5;
     --color-bg-accent: #EF6E4D;
     --color-bg-accent-light: rgba(239, 110, 77, 0.1);
+    --color-bg-substrate-primary: rgba(54, 59, 100, 0.2);
 
     --color-text-primary: #363B64;
     --color-text-secondary: #A098AE;
     --color-text-accent: #EF6E4D;
+    --color-text-accent-hover: #d94921;
 
     --color-border-primary: rgba(160, 152, 174, 0.3);
 
@@ -53,12 +55,20 @@ body {
     color: var(--color-text-primary);
     text-decoration: none;
     border-bottom: solid 1px var(--color-text-primary);
+    font-weight: 500;
+}
+.text-link--accent {
+    border-bottom-color: transparent;
+    color: var(--color-text-accent);
 }
 
 @media (hover: hover) {
     .text-link:hover {
         border-bottom-color: transparent;
         color: var(--color-text-accent);
+    }
+    .text-link--accent:hover {
+        color: var(--color-text-accent-hover);
     }
 }
 
@@ -164,4 +174,102 @@ body {
 .page-footer {
     padding: 1rem 0;
     text-align: center;
+}
+
+/*====================
+    Titles
+ ====================*/
+
+.text-title {
+    margin: 0;
+    font-weight: 700;
+    line-height: 1;
+}
+.text-title--h1 {
+    font-size: 2rem;
+}
+.text-title--h2 {
+    font-size: 1.2rem;
+}
+
+/*====================
+    Text Body
+ ====================*/
+
+.text-body {
+    font-weight: 400;
+    line-height: 1.4;
+    margin: 0;
+}
+.text-body--m {
+    font-size: .9rem;
+}
+
+/*====================
+    Badge
+ ====================*/
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    height: 1.2rem;
+    padding: 0 .5rem;
+    background: var(--color-bg-substrate-primary);
+    color: var(--color-text-primary);
+    font-size: .6rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    font-weight: 700;
+}
+.badge--accent {
+    background-color: var(--color-bg-accent-light);
+    color: var(--color-text-accent);
+}
+
+/*====================
+    Card
+ ====================*/
+
+.card {
+    background: var(--color-bg-primary);
+    padding: 1rem;
+}
+.card__person {
+    display: flex;
+    align-items: flex-start;
+}
+.card__photo {
+    background: var(--color-bg-substrate-primary);
+    display: block;
+    min-width: 5rem;
+    width: 5rem;
+    height: 5rem;
+}
+.card__content {
+    flex-grow: 1;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0 0 0 1rem;
+}
+.card__status {
+    margin: 0 0 .5rem;
+}
+.card__title {
+    margin: 0 0 .25em;
+}
+.card__more {
+    margin-top: auto;
+}
+
+/*====================
+    Cards Grid
+ ====================*/
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
 }
