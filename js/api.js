@@ -31,4 +31,3 @@ const getCharacterById = async (id) => {
 };
 
 export { getAllCharacters, getCharacterById };
-
