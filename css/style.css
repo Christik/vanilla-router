@@ -5,14 +5,24 @@
 :root {
     --color-bg-primary: #FCFCFC;
     --color-bg-secondary: #F5F5F5;
-    --color-bg-accent: #EF6E4D;
-    --color-bg-accent-light: rgba(239, 110, 77, 0.1);
+    --color-bg-accent: #12CBC4;
+    --color-bg-accent-light: rgba(18, 203, 196, 0.08);
     --color-bg-substrate-primary: rgba(54, 59, 100, 0.2);
+    --color-bg-substrate-primary-light: rgba(54, 59, 100, 0.1);
+    --color-bg-success: #A3CB38;
+    --color-bg-substrate-success: rgba(163, 203, 56, 0.1);
+    --color-bg-warn: #f39c12;
+    --color-bg-substrate-warn: rgba(243, 156, 18, 0.1);
+    --color-bg-error: #e74c3c;
+    --color-bg-substrate-error: rgba(231, 76, 60, 0.1);
 
     --color-text-primary: #363B64;
     --color-text-secondary: #A098AE;
-    --color-text-accent: #EF6E4D;
-    --color-text-accent-hover: #d94921;
+    --color-text-accent: #12CBC4;
+    --color-text-accent-hover: #00a19c;
+    --color-text-success: #A3CB38;
+    --color-text-warn: #f39c12;
+    --color-text-error: #e74c3c;
 
     --color-border-primary: rgba(160, 152, 174, 0.3);
 
@@ -215,7 +225,7 @@ body {
     white-space: nowrap;
     height: 1.2rem;
     padding: 0 .5rem;
-    background: var(--color-bg-substrate-primary);
+    background: var(--color-bg-substrate-primary-light);
     color: var(--color-text-primary);
     font-size: .6rem;
     text-transform: uppercase;
@@ -225,6 +235,18 @@ body {
 .badge--accent {
     background-color: var(--color-bg-accent-light);
     color: var(--color-text-accent);
+}
+.badge--success {
+    background-color: var(--color-bg-substrate-success);
+    color: var(--color-text-success);
+}
+.badge--warn {
+    background-color: var(--color-bg-substrate-warn);
+    color: var(--color-text-warn);
+}
+.badge--error {
+    background-color: var(--color-bg-substrate-error);
+    color: var(--color-text-error);
 }
 
 /*====================
