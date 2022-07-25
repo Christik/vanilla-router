@@ -57,10 +57,12 @@
     <div class="card">
         <div class="card__person">
             <div class="card__photo">
-                <img class="card__photo__img">
+                <img class="card__photo__img"
+                     src="#"
+                     alt="Alt">
             </div>
             <div class="card__content">
-                <div class="badge badge--success card__status">Status</div>
+                <div class="badge card__status">Status</div>
                 <p class="text-title text-title--h2 card__title">
                     Character Name
                 </p>
@@ -71,6 +73,38 @@
             </div>
         </div><!--.card__person-->
     </div><!--.card-->
+</template>
+
+<template id="card-location">
+    <div class="card">
+        <p class="text-title text-title--h2 card__title">
+            Location
+        </p>
+        <p class="text-body text-body--m">
+            <span class="text-body--secondary">Тип:</span>
+            <span class="card__type">type</span>
+        </p>
+        <p class="text-body text-body--m">
+            <span class="text-body--secondary">Измерение:</span>
+            <span class="card__dimension">dimension</span>
+        </p>
+        <div class="card__residents">
+            <p class="text-body text-body--m text-body--secondary card__residents__label">
+                Жители:
+            </p>
+            <div class="avatar-group">
+
+            </div>
+        </div>
+    </div><!--.card-->
+</template>
+
+<template id="avatar-s">
+    <div class="avatar avatar--s">
+        <img class="avatar__img"
+             src="#"
+             alt="">
+    </div>
 </template>
 
 <script src="./js/app.js" type="module"></script>

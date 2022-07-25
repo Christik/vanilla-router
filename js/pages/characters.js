@@ -6,18 +6,21 @@ const statusMap = {
   'unknown': 'badge--warn',
 };
 
-const characters = await getAllCharacters();
-
 const template = document.querySelector('#card-character').content;
 const templateElement = template.querySelector('.card');
+
+const characters = await getAllCharacters();
 
 const createCard = (character) => {
     const cardElement = templateElement.cloneNode(true);
     const titleElement = cardElement.querySelector('.card__title');
+    const imgElement = cardElement.querySelector('.card__photo__img');
     const statusElement = cardElement.querySelector('.card__status');
     const statusClass = statusMap[character.status];
 
     titleElement.textContent = character.name;
+    imgElement.src = character.image;
+    imgElement.alt = character.name;
     statusElement.textContent = character.status;
     statusElement.classList.add(statusClass);
 
@@ -37,8 +40,8 @@ const renderCharacters = (characters, containerElement) => {
 };
 
 const init = () => {
-    const charactersContainer = document.querySelector('.cards');
-    renderCharacters(characters, charactersContainer);
+    const charactersContainerElement = document.querySelector('.cards');
+    renderCharacters(characters, charactersContainerElement);
 };
 
 export { init as default };

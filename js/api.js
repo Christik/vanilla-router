@@ -20,14 +20,18 @@ const getData = async (url) => {
     }
 };
 
-const getAllCharacters = async () => {
-    const data = await getData(ServerUrl.CHARACTER);
+const getAllItems = async (url) => {
+    const data = await getData(url);
     return data.results;
 };
+
+const getAllCharacters = async () => getAllItems(ServerUrl.CHARACTER);
+
+const getAllLocations = async () => getAllItems(ServerUrl.LOCATION);
 
 const getCharacterById = async (id) => {
     const url = `${ServerUrl.CHARACTER}/${id}`;
     return await getData(url);
 };
 
-export { getAllCharacters, getCharacterById };
+export { getAllCharacters, getCharacterById, getAllLocations };
