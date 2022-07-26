@@ -164,6 +164,11 @@ body {
     color: var(--color-text-secondary);
     text-decoration: none;
 }
+.menu__link,
+.menu__link:active,
+.menu__link:focus {
+    outline: none;
+}
 .menu__link--active {
     pointer-events: none;
     border-color: transparent;

@@ -2,16 +2,18 @@ import { getDynamicRoutes, getDynamicRoutByHref } from './dynamic-routes.js';
 
 const state = {
     config: {
-      routes: {
+        routes: {
           '/': {
               template: '',
               script: '',
               title: '',
               description: '',
           },
-      },
-      contentContainer: null,
+        },
+        contentContainer: null,
+        onRoutChange: () => {},
     },
+    currentRout: '',
     dynamicRoutes: [
         {
             value: '',
@@ -19,6 +21,8 @@ const state = {
         },
     ],
 };
+
+const getCurrentRount = () => state.currentRout;
 
 const getPageContent = async (templateUrl) => {
     try {
@@ -51,6 +55,8 @@ const goToPage = async (path, routeValue, data = null) => {
     updatePageContent(pageContent);
     updateMetaTags(route);
     history.pushState({}, '', path);
+    state.currentRout = routeValue;
+    state.config?.onRoutChange();
 
     if (route.script) {
         const pageScript = await import(route.script);
@@ -105,4 +111,4 @@ const initRouter = async (config) => {
     window.addEventListener('popstate', onWindowPopstate);
 };
 
-export { initRouter };
+export { initRouter, getCurrentRount };
