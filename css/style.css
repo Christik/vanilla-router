@@ -269,6 +269,19 @@ body {
     height: 100%;
     border: none;
 }
+.avatar--count {
+    background: var(--color-bg-accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: .7rem;
+    font-weight: 700;
+    width: auto;
+    min-width: 1.5rem;
+    padding: 0 .2rem;
+}
 
 /*====================
     Avatar Group
