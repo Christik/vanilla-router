@@ -29,9 +29,11 @@ const getAllCharacters = async () => getAllItems(ServerUrl.CHARACTER);
 
 const getAllLocations = async () => getAllItems(ServerUrl.LOCATION);
 
+const getAllEpisodes = async () => getAllItems(ServerUrl.EPISODE);
+
 const getCharacterById = async (id) => {
     const url = `${ServerUrl.CHARACTER}/${id}`;
     return await getData(url);
 };
 
-export { getAllCharacters, getCharacterById, getAllLocations };
+export { getAllCharacters, getCharacterById, getAllLocations, getAllEpisodes };
