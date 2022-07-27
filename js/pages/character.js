@@ -1,11 +1,5 @@
-console.log('catalog script');
-
-const foo = () => {
-    console.log('foo');
+const init = async (id) => {
+    console.log('init character ', id);
 };
 
-const init = () => {
-    console.log('init catalog');
-}
-
-export { foo, init as default };
+export { init as default };

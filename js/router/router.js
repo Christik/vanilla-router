@@ -54,13 +54,13 @@ const goToPage = async (path, routeValue, data = null) => {
 
     updatePageContent(pageContent);
     updateMetaTags(route);
-    history.pushState({}, '', path);
+    history.pushState(null, '', `${window.location.origin}${path}`);
     state.currentRout = routeValue;
     state.config?.onRoutChange();
 
     if (route.script) {
         const pageScript = await import(route.script);
-        pageScript.default(data);
+        await pageScript.default(data);
     }
 };
 
