@@ -9,8 +9,8 @@ const setActiveLink = () => {
     const currentRount = getCurrentRount();
     const currentLink = menuElement.querySelector(`[href="${currentRount}"]`);
 
-    oldLink.classList.remove(ACTIVE_CLASS);
-    currentLink.classList.add(ACTIVE_CLASS);
+    oldLink?.classList.remove(ACTIVE_CLASS);
+    currentLink?.classList.add(ACTIVE_CLASS);
 };
 
 export { setActiveLink };
