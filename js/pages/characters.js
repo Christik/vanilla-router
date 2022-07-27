@@ -40,8 +40,8 @@ const renderCharacters = (characters, containerElement) => {
 };
 
 const init = () => {
-    console.log('init main page')
     const charactersContainerElement = document.querySelector('.cards');
+
     renderCharacters(characters, charactersContainerElement);
 };
 
