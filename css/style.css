@@ -263,6 +263,9 @@ body {
 
 .avatar {
     background: var(--color-bg-substrate-primary);
+    position: relative;
+    overflow: hidden;
+    font-size: .7rem;
 }
 .avatar--s {
     width: 1.5rem;
@@ -366,4 +369,45 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
+}
+
+/*====================
+    Card Full
+ ====================*/
+
+.card-full {
+    background: var(--color-bg-primary);
+    position: relative;
+    padding: 3rem 3rem 2rem;
+    display: flex;
+    align-items: flex-start;
+}
+.card-full__bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 11rem;
+    width: 100%;
+    background: var(--color-bg-accent);
+}
+.card-full__photo {
+    height: 16rem;
+    width: 16rem;
+    min-width: 15rem;
+    border: solid .5rem var(--color-bg-primary);
+    background: #ccc;
+}
+.card-full__content {
+    position: relative;
+    flex-grow: 1;
+    margin: 10rem 0 0 2rem;
+}
+.card-full__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin: 0 0 1.25rem;
+}
+.card-full__list .text-body {
+    margin-top: .5em;
 }
