@@ -1,4 +1,5 @@
 import { getCharacterById } from '../api.js';
+import { updateStatusElement } from '../status.js';
 
 const template = document.querySelector('#card-full').content;
 const templateElement = template.querySelector('.card-full');
@@ -17,12 +18,12 @@ const renderFullCharacter = (character, containerElement) => {
   imgElement.src = character.image;
   imgElement.alt = character.name;
   titleElement.textContent = character.name;
-  statusElement.textContent = character.status;
   speciesElement.textContent = character.species;
   genderElement.textContent = character.gender;
   typeElement.textContent = character.type;
   originElement.textContent = character.origin.name;
   locationElement.textContent = character.location.name;
+  updateStatusElement(statusElement, character.status);
 
   containerElement.append(fullCardElement);
 };

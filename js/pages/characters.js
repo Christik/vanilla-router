@@ -1,10 +1,5 @@
 import { getAllCharacters } from '../api.js';
-
-const statusMap = {
-  'Alive': 'badge--success',
-  'Dead': 'badge--error',
-  'unknown': 'badge--warn',
-};
+import { updateStatusElement } from '../status.js';
 
 const template = document.querySelector('#card-character').content;
 const templateElement = template.querySelector('.card');
@@ -17,14 +12,12 @@ const createCard = (character) => {
     const imgElement = cardElement.querySelector('.card__photo__img');
     const linkElement = cardElement.querySelector('.card__more a');
     const statusElement = cardElement.querySelector('.card__status');
-    const statusClass = statusMap[character.status];
 
     titleElement.textContent = character.name;
     imgElement.src = character.image;
     imgElement.alt = character.name;
     linkElement.href = `/character/${character.id}`;
-    statusElement.textContent = character.status;
-    statusElement.classList.add(statusClass);
+    updateStatusElement(statusElement, character.status);
 
     return cardElement;
 };
