@@ -1,5 +1,6 @@
 import { initRouter } from './router/router.js';
 import { setActiveLink } from './menu.js';
+import { addLoadingAnimation, removeLoadingAnimation } from './loading-animation.js';
 
 const contentElement = document.querySelector('.page-content');
 const routerConfig = {
@@ -35,7 +36,13 @@ const routerConfig = {
         },
     },
     contentContainer: contentElement,
-    onRoutChange: setActiveLink,
+    onBeforeChange: () => {
+      addLoadingAnimation();
+    },
+    onAfterChange: () => {
+        setActiveLink();
+        removeLoadingAnimation();
+    },
 };
 
 initRouter(routerConfig);

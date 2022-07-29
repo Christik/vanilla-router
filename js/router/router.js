@@ -11,7 +11,8 @@ const state = {
           },
         },
         contentContainer: null,
-        onRoutChange: () => {},
+        onBeforeChange: () => {},
+        onAfterChange: () => {},
     },
     currentRout: '',
     dynamicRoutes: [
@@ -48,7 +49,9 @@ const updateMetaTags = (route) => {
 const updatePageContent = (content) => (state.config.contentContainer.innerHTML = content);
 
 const goToPage = async (path, routeValue, data = null) => {
-    routeValue = (routeValue || path);
+    state.config.onBeforeChange?.();
+
+    routeValue = (routeValue ?? path);
     const route = state.config.routes[routeValue];
     const pageContent = await getPageContent(route.template);
 
@@ -56,12 +59,13 @@ const goToPage = async (path, routeValue, data = null) => {
     updateMetaTags(route);
     history.pushState(null, '', `${window.location.origin}${path}`);
     state.currentRout = routeValue;
-    state.config?.onRoutChange();
 
     if (route.script) {
         const pageScript = await import(route.script);
         await pageScript.default(data);
     }
+
+    state.config.onAfterChange?.();
 };
 
 const setRoute = async (path) => {

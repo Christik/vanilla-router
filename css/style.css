@@ -93,7 +93,7 @@ body {
 }
 
 .page {
-    min-height: 100vh;
+    height: 100vh;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: min-content 1fr min-content;
@@ -109,6 +109,7 @@ body {
 
 .page-header {
     background: var(--color-bg-primary);
+    border-bottom: solid 1px var(--color-border-primary);
 }
 .page-header__in {
     height: 5rem;
@@ -183,12 +184,52 @@ body {
 }
 
 /*====================
+    Content
+ ====================*/
+
+.page-content {
+    position: relative;
+    overflow-y: scroll;
+}
+.page-content:after {
+    content: '';
+    display: none;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background: var(--color-bg-primary) url('../img/loading.svg') no-repeat 50% 50%;
+    background-size: 75% 75%;
+    animation: loading 2s linear infinite;
+}
+.page-content--loading > * {
+    opacity: .5;
+    pointer-events: none;
+}
+.page-content--loading:after {
+    display: block;
+}
+
+@keyframes loading {
+    from {
+        transform: translate(-50%,-50%) rotate(0);
+    }
+    to {
+        transform: translate(-50%,-50%) rotate(-360deg);
+    }
+}
+
+/*====================
     Footer
  ====================*/
 
 .page-footer {
-    padding: 1rem 0;
+    padding: .5rem 0;
     text-align: center;
+    border-top: solid 1px var(--color-border-primary);
 }
 
 /*====================
@@ -215,6 +256,9 @@ body {
     font-weight: 400;
     line-height: 1.6;
     margin: 0;
+}
+.text-body--s {
+    font-size: .7rem;
 }
 .text-body--m {
     font-size: .9rem;
