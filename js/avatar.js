@@ -18,8 +18,11 @@ const createAvatarCounter = (count) => {
 
 const createSmallAvatar = (character) => {
     const avatarElement = templateSmallAvatarElement.cloneNode(true);
+    const linkElement = avatarElement.querySelector('a');
     const imgElement = avatarElement.querySelector('.avatar__img');
 
+    linkElement.href = `/character/${character.id}`;
+    linkElement.title = character.name;
     imgElement.src = character.image;
     imgElement.alt = character.name;
 
