@@ -462,12 +462,13 @@ body {
 
 .pagination {
     display: flex;
+    flex-wrap: wrap;
     align-items: stretch;
     justify-content: center;
     margin: 2rem 0 0;
 }
-.pagination__item:not(:first-child) {
-    margin-left: .5rem;
+.pagination__item {
+    margin: 0 .25rem .25rem;
 }
 .pagination__link {
     display: flex;

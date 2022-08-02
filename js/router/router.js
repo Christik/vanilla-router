@@ -23,6 +23,10 @@ const state = {
     ],
 };
 
+const hasGetParams = (path) => path.includes('?');
+
+const getPathWithoutParams = (path) => path.slice(0, path.indexOf('?'));
+
 const getCurrentRount = () => state.currentRout;
 
 const getPageContent = async (templateUrl) => {
@@ -51,7 +55,8 @@ const updatePageContent = (content) => (state.config.contentContainer.innerHTML 
 const goToPage = async (path, routeValue, data = null) => {
     state.config.onBeforeChange?.();
 
-    routeValue = (routeValue ?? path);
+    const pathWithoutParams = hasGetParams(path) ? getPathWithoutParams(path) : path;
+    routeValue = (routeValue ?? pathWithoutParams);
     const route = state.config.routes[routeValue];
     const pageContent = await getPageContent(route.template);
 
@@ -69,15 +74,17 @@ const goToPage = async (path, routeValue, data = null) => {
 };
 
 const setRoute = async (path) => {
-    const isPageStatic = state.config.routes.hasOwnProperty(path);
+    const pathWithoutParams = hasGetParams(path) ? getPathWithoutParams(path) : path;
+
+    const isPageStatic = state.config.routes.hasOwnProperty(pathWithoutParams);
     if (isPageStatic) {
         await goToPage(path);
         return;
     }
 
-    const dynamicRoute = getDynamicRoutByHref(path, state.dynamicRoutes);
+    const dynamicRoute = getDynamicRoutByHref(pathWithoutParams, state.dynamicRoutes);
     if (dynamicRoute) {
-        await goToPage(path, dynamicRoute.value, dynamicRoute.variable);
+        await goToPage(pathWithoutParams, dynamicRoute.value, dynamicRoute.variable);
         return;
     }
 

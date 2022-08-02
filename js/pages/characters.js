@@ -1,10 +1,9 @@
-import { getAllCharacters } from '../api.js';
+import { getCharactersFromPage, getCharactersPageQuantity } from '../api.js';
+import { renderPagination } from '../pagination.js';
 import { updateStatusElement } from '../status.js';
 
 const template = document.querySelector('#card-character').content;
 const templateElement = template.querySelector('.card');
-
-const characters = await getAllCharacters();
 
 const createCard = (character) => {
     const cardElement = templateElement.cloneNode(true);
@@ -34,9 +33,15 @@ const renderCharacters = (characters, containerElement) => {
     containerElement.append(fragment);
 };
 
-const init = () => {
+const init = async () => {
     const charactersContainerElement = document.querySelector('.cards');
+    const paginationContainerElement = document.querySelector('[data-pagination]');
+    const urlParams = new URLSearchParams(window.location.search);
+    const pageNumber = urlParams.get('page') ?? 1;
+    const characters = await getCharactersFromPage(pageNumber);
+    const pageQuantity = await getCharactersPageQuantity();
 
+    renderPagination(pageQuantity, paginationContainerElement);
     renderCharacters(characters, charactersContainerElement);
 };
 

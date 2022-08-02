@@ -25,7 +25,12 @@ const getAllItems = async (url) => {
     return data.results;
 };
 
-const getAllCharacters = async () => getAllItems(ServerUrl.CHARACTER);
+const getCharactersFromPage = async (page) => getAllItems(`${ServerUrl.CHARACTER}/?page=${page}`);
+
+const getCharactersPageQuantity = async () => {
+    const data = await getData(ServerUrl.CHARACTER);
+    return data.info.pages;
+};
 
 const getAllLocations = async () => getAllItems(ServerUrl.LOCATION);
 
@@ -36,4 +41,9 @@ const getCharacterById = async (id) => {
     return await getData(url);
 };
 
-export { getAllCharacters, getCharacterById, getAllLocations, getAllEpisodes };
+export {
+    getCharactersFromPage,
+    getCharactersPageQuantity,
+    getCharacterById,
+    getAllLocations,
+    getAllEpisodes };
