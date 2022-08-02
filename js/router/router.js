@@ -116,7 +116,7 @@ const initRouter = async (config) => {
     state.config = config;
     state.dynamicRoutes = getDynamicRoutes(Object.keys(state.config.routes));
 
-    await setRoute(window.location.pathname);
+    await setRoute(`${window.location.pathname}${window.location.search}`);
 
     document.addEventListener('click', onLinkClick);
     window.addEventListener('popstate', onWindowPopstate);
