@@ -470,11 +470,17 @@ body {
 .pagination__item {
     margin: 0 .25rem .25rem;
 }
+.pagination__divider,
 .pagination__link {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 2.5rem;
+}
+.pagination__divider {
+    min-width: 1.5rem;
+}
+.pagination__link {
     min-width: 2.5rem;
     padding: 0 .5rem;
     background: var(--color-bg-primary);

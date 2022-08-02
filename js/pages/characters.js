@@ -37,11 +37,11 @@ const init = async () => {
     const charactersContainerElement = document.querySelector('.cards');
     const paginationContainerElement = document.querySelector('[data-pagination]');
     const urlParams = new URLSearchParams(window.location.search);
-    const pageNumber = urlParams.get('page') ?? 1;
-    const characters = await getCharactersFromPage(pageNumber);
+    const currentPageNumber = urlParams.get('page') ?? 1;
+    const characters = await getCharactersFromPage(currentPageNumber);
     const pageQuantity = await getCharactersPageQuantity();
 
-    renderPagination(pageQuantity, paginationContainerElement);
+    renderPagination(pageQuantity, currentPageNumber, paginationContainerElement);
     renderCharacters(characters, charactersContainerElement);
 };
 
