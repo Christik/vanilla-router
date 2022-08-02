@@ -22,7 +22,7 @@ const createItemElement = (text, pageNumber, addlClass) => {
     const linkElement = pageElement.querySelector('.pagination__link');
 
     linkElement.textContent = text;
-    linkElement.href = `/?page=${pageNumber}`;
+    linkElement.href = `${window.location.pathname}?page=${pageNumber}`;
 
     if (addlClass) {
         linkElement.classList.add(addlClass);
@@ -84,7 +84,7 @@ const renderPagination = (pageQuantity, currentPageNumber, containerElement) => 
         fragment.append(pageElement);
     }
 
-    if (finishPageNumber < pageQuantity - 1) {
+    if (finishPageNumber < pageQuantity) {
         const dividerElement = createDividerElement();
         fragment.append(dividerElement);
 
@@ -101,4 +101,9 @@ const renderPagination = (pageQuantity, currentPageNumber, containerElement) => 
     containerElement.append(paginationElement);
 };
 
-export { renderPagination };
+const getCurrentPageNumber = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('page') ?? 1;
+};
+
+export { renderPagination, getCurrentPageNumber };

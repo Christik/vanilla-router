@@ -1,10 +1,9 @@
-import { getAllLocations } from '../api.js';
+import { getLocationsFromPage, getLocationsPageQuantity } from '../api.js';
 import { renderSmallAvatars } from '../avatar.js';
+import { renderPagination, getCurrentPageNumber } from '../pagination.js';
 
 const templateCard = document.querySelector('#card-location').content;
 const templateCardElement = templateCard.querySelector('.card');
-
-const locations = await getAllLocations();
 
 const createCard = async (location) => {
     const cardElement = templateCardElement.cloneNode(true);
@@ -34,10 +33,15 @@ const renderLocations = async (locations, containerElement) => {
     containerElement.append(fragment);
 };
 
-const init = () => {
+const init = async () => {
     const locationsContainerElement = document.querySelector('.cards');
+    const paginationContainerElement = document.querySelector('[data-pagination]');
+    const currentPageNumber = getCurrentPageNumber();
+    const locations = await getLocationsFromPage(1);
+    const pageQuantity = await getLocationsPageQuantity();
 
-    renderLocations(locations, locationsContainerElement)
+    renderLocations(locations, locationsContainerElement);
+    renderPagination(pageQuantity, currentPageNumber, paginationContainerElement);
 }
 
 export { init as default };

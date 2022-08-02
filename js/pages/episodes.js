@@ -1,10 +1,9 @@
-import { getAllEpisodes } from '../api.js';
+import { getEpisodesFromPage, getEpisodesPageQuantity } from '../api.js';
 import { renderSmallAvatars } from '../avatar.js';
+import { renderPagination, getCurrentPageNumber } from '../pagination.js';
 
 const templateCard = document.querySelector('#card-episode').content;
 const templateCardElement = templateCard.querySelector('.card');
-
-const episodes = await getAllEpisodes();
 
 const createEpisode = (episode) => {
   const episodeElement = templateCardElement.cloneNode(true);
@@ -34,8 +33,13 @@ const renderEpisodes = (episodes, containerElement) => {
 
 const init = async () => {
     const episodesContainerElement = document.querySelector('.cards');
+    const paginationContainerElement = document.querySelector('[data-pagination]');
+    const pageQuantity = await getEpisodesPageQuantity();
+    const currentPageNumber = getCurrentPageNumber();
+    const episodes = await getEpisodesFromPage(1);
 
     renderEpisodes(episodes, episodesContainerElement);
+    renderPagination(pageQuantity, currentPageNumber, paginationContainerElement);
 }
 
 export { init as default };

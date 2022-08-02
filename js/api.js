@@ -25,16 +25,20 @@ const getAllItems = async (url) => {
     return data.results;
 };
 
-const getCharactersFromPage = async (page) => getAllItems(`${ServerUrl.CHARACTER}/?page=${page}`);
-
-const getCharactersPageQuantity = async () => {
-    const data = await getData(ServerUrl.CHARACTER);
+const getPageQuantity = async (url) => {
+    const data = await getData(url);
     return data.info.pages;
 };
 
-const getAllLocations = async () => getAllItems(ServerUrl.LOCATION);
+const getItemsFromPage = async (url, page) => getAllItems(`${url}/?page=${page}`);
 
-const getAllEpisodes = async () => getAllItems(ServerUrl.EPISODE);
+const getCharactersPageQuantity = async () => await getPageQuantity(ServerUrl.CHARACTER);
+const getLocationsPageQuantity = async () => await getPageQuantity(ServerUrl.LOCATION);
+const getEpisodesPageQuantity = async () => await getPageQuantity(ServerUrl.EPISODE);
+
+const getCharactersFromPage = async (page) => getItemsFromPage(ServerUrl.CHARACTER, page);
+const getLocationsFromPage = async (page) => getItemsFromPage(ServerUrl.LOCATION, page);
+const getEpisodesFromPage = async (page) => getItemsFromPage(ServerUrl.EPISODE, page);
 
 const getCharacterById = async (id) => {
     const url = `${ServerUrl.CHARACTER}/${id}`;
@@ -45,5 +49,8 @@ export {
     getCharactersFromPage,
     getCharactersPageQuantity,
     getCharacterById,
-    getAllLocations,
-    getAllEpisodes };
+    getLocationsFromPage,
+    getLocationsPageQuantity,
+    getEpisodesFromPage,
+    getEpisodesPageQuantity
+};

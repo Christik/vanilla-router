@@ -1,5 +1,5 @@
 import { getCharactersFromPage, getCharactersPageQuantity } from '../api.js';
-import { renderPagination } from '../pagination.js';
+import { renderPagination, getCurrentPageNumber } from '../pagination.js';
 import { updateStatusElement } from '../status.js';
 
 const template = document.querySelector('#card-character').content;
@@ -36,8 +36,7 @@ const renderCharacters = (characters, containerElement) => {
 const init = async () => {
     const charactersContainerElement = document.querySelector('.cards');
     const paginationContainerElement = document.querySelector('[data-pagination]');
-    const urlParams = new URLSearchParams(window.location.search);
-    const currentPageNumber = urlParams.get('page') ?? 1;
+    const currentPageNumber = getCurrentPageNumber();
     const characters = await getCharactersFromPage(currentPageNumber);
     const pageQuantity = await getCharactersPageQuantity();
 
