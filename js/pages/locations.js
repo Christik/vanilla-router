@@ -10,13 +10,20 @@ const createCard = async (location) => {
     const titleElement = cardElement.querySelector('.card__title');
     const typeElement = cardElement.querySelector('.card__type');
     const dimensionElement = cardElement.querySelector('.card__dimension');
+    const residentsElement = cardElement.querySelector('.card__residents');
     const avatarsContainerElement = cardElement.querySelector('.avatar-group');
 
     titleElement.textContent = location.name;
     typeElement.textContent = location.type;
     dimensionElement.textContent = location.dimension;
 
-    renderSmallAvatars(location.residents, avatarsContainerElement);
+    if (location.residents.length === 0) {
+        residentsElement.remove();
+
+        return cardElement;
+    }
+
+    await renderSmallAvatars(location.residents, avatarsContainerElement);
 
     return cardElement;
 };

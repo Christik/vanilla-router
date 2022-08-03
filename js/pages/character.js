@@ -20,10 +20,15 @@ const renderFullCharacter = (character, containerElement) => {
   titleElement.textContent = character.name;
   speciesElement.textContent = character.species;
   genderElement.textContent = character.gender;
-  typeElement.textContent = character.type;
   originElement.textContent = character.origin.name;
   locationElement.textContent = character.location.name;
   updateStatusElement(statusElement, character.status);
+
+  if (character.type) {
+    typeElement.textContent = character.type;
+  } else {
+    typeElement.closest('p').remove();
+  }
 
   containerElement.append(fullCardElement);
 };
