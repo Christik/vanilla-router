@@ -47,7 +47,7 @@ const init = async () => {
     const locations = await getLocationsFromPage(1);
     const pageQuantity = await getLocationsPageQuantity();
 
-    renderLocations(locations, locationsContainerElement);
+    await renderLocations(locations, locationsContainerElement);
     renderPagination(pageQuantity, currentPageNumber, paginationContainerElement);
 }
 

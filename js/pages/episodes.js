@@ -5,7 +5,7 @@ import { renderPagination, getCurrentPageNumber } from '../pagination.js';
 const templateCard = document.querySelector('#card-episode').content;
 const templateCardElement = templateCard.querySelector('.card');
 
-const createEpisode = (episode) => {
+const createEpisode = async (episode) => {
   const episodeElement = templateCardElement.cloneNode(true);
   const titleElement = episodeElement.querySelector('.card__title');
   const numberElement = episodeElement.querySelector('.card__episode');
@@ -16,16 +16,16 @@ const createEpisode = (episode) => {
   numberElement.textContent = episode.episode;
   dateElement.textContent = episode.air_date;
 
-  renderSmallAvatars(episode.characters, avatarsContainerElement);
+  await renderSmallAvatars(episode.characters, avatarsContainerElement);
 
   return episodeElement;
 };
 
-const renderEpisodes = (episodes, containerElement) => {
+const renderEpisodes = async (episodes, containerElement) => {
     containerElement.innerHTML = '';
 
     for (const episode of episodes) {
-        const episodeElement = createEpisode(episode);
+        const episodeElement = await createEpisode(episode);
 
         containerElement.append(episodeElement);
     }
@@ -38,7 +38,7 @@ const init = async () => {
     const currentPageNumber = getCurrentPageNumber();
     const episodes = await getEpisodesFromPage(1);
 
-    renderEpisodes(episodes, episodesContainerElement);
+    await renderEpisodes(episodes, episodesContainerElement);
     renderPagination(pageQuantity, currentPageNumber, paginationContainerElement);
 }
 

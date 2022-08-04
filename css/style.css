@@ -193,7 +193,7 @@ body {
 }
 .page-content:after {
     content: '';
-    display: none;
+    display: block;
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 50%;
@@ -204,13 +204,15 @@ body {
     background: var(--color-bg-primary) url('../img/loading.svg') no-repeat 50% 50%;
     background-size: 75% 75%;
     animation: loading 2s linear infinite;
+    opacity: 0;
 }
 .page-content--loading > * {
     opacity: .5;
     pointer-events: none;
 }
 .page-content--loading:after {
-    display: block;
+    transition: opacity .4s .5s;
+    opacity: 1;
 }
 
 @keyframes loading {

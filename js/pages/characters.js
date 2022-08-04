@@ -40,8 +40,8 @@ const init = async () => {
     const characters = await getCharactersFromPage(currentPageNumber);
     const pageQuantity = await getCharactersPageQuantity();
 
-    renderPagination(pageQuantity, currentPageNumber, paginationContainerElement);
     renderCharacters(characters, charactersContainerElement);
+    renderPagination(pageQuantity, currentPageNumber, paginationContainerElement);
 };
 
 export { init as default };
